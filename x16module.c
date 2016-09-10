@@ -11,6 +11,7 @@ static PyObject *hash_func(void (*func)(const char*, uint32_t, char*), PyObject 
     Py_ssize_t size = 0;
     char *output = NULL;
     PyObject *value = NULL;
+
 #if PY_MAJOR_VERSION >= 3
     PyBytesObject *input = NULL;
 #else
@@ -33,6 +34,7 @@ static PyObject *hash_func(void (*func)(const char*, uint32_t, char*), PyObject 
     output = PyMem_Malloc(buf_size);
     func(ptr, size, output);
     Py_DECREF(input);
+
 #if PY_MAJOR_VERSION >= 3
     value = Py_BuildValue("y#", output, buf_size);
 #else
