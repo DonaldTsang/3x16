@@ -29,10 +29,8 @@ void xor_hash(const uint32_t input[16], uint32_t output[16])
     }
 }
 
-void x16r_hash(const char* input, char* output)
+void x16r_hash(const char* input, uint32_t x, char* output)
 {
-    uint32_t x = sizeof(input);
-
     sph_blake512_context    ctx_blake;
     sph_bmw512_context      ctx_bmw;
     sph_groestl512_context  ctx_groestl;
