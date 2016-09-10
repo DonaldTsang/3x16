@@ -4,25 +4,34 @@
 #include "x16r.h"
 #include "x16c.h"
 
-static PyObject *hash_func(void (*func)(const char*, char*), PyObject *self, PyObject *args, const unsigned int buf_size)
+static PyObject *hash_func(void (*func)(const char*, uint32_t, char*), PyObject *self, PyObject *args, const unsigned int buf_size)
 {
-    char *output;
-    PyObject *value;
+    int ret;
+    char* ptr = NULL;
+    Py_ssize_t size = 0;
+    char *output = NULL;
+    PyObject *value = NULL;
 #if PY_MAJOR_VERSION >= 3
-    PyBytesObject *input;
+    PyBytesObject *input = NULL;
 #else
-    PyStringObject *input;
+    PyStringObject *input = NULL;
 #endif
-    if (!PyArg_ParseTuple(args, "S", &input))
+    if (!PyArg_ParseTuple(args, "S", &input)) {
         return NULL;
-    Py_INCREF(input);
-    output = PyMem_Malloc(buf_size);
+    }
 
 #if PY_MAJOR_VERSION >= 3
-    func((char *)PyBytes_AsString((PyObject*) input), output);
+    ret = PyBytes_AsStringAndSize((PyObject*) input, &ptr, &size);
 #else
-    func((char *)PyString_AsString((PyObject*) input), output);
+    ret = PyString_AsStringAndSize((PyObject*) input, &ptr, &size);
 #endif
+    if (ret < 0) {
+        return NULL;
+    }
+
+    Py_INCREF(input);
+    output = PyMem_Malloc(buf_size);
+    func(ptr, size, output);
     Py_DECREF(input);
 #if PY_MAJOR_VERSION >= 3
     value = Py_BuildValue("y#", output, buf_size);
