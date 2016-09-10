@@ -21,10 +21,8 @@
 #include "sha3/sph_whirlpool.h"
 #include "sha3/sph_sha2.h"
 
-void x16o_hash(const char* input, char* output)
+void x16o_hash(const char* input, uint32_t x, char* output)
 {
-    uint32_t x = sizeof(input);
-
     sph_blake512_context    ctx_blake;
     sph_bmw512_context      ctx_bmw;
     sph_groestl512_context  ctx_groestl;
