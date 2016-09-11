@@ -7,15 +7,15 @@
 static PyObject *hash_func(void (*func)(const char*, uint32_t, char*), PyObject *self, PyObject *args, const unsigned int buf_size)
 {
     int ret;
-    char* ptr = NULL;
+    char* ptr;
     Py_ssize_t size = 0;
     char *output = NULL;
-    PyObject *value = NULL;
+    PyObject *value;
 
 #if PY_MAJOR_VERSION >= 3
-    PyBytesObject *input = NULL;
+    PyBytesObject *input;
 #else
-    PyStringObject *input = NULL;
+    PyStringObject *input;
 #endif
     if (!PyArg_ParseTuple(args, "S", &input)) {
         return NULL;
