@@ -1,6 +1,8 @@
 #ifndef X16O_H
 #define X16O_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
