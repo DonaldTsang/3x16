@@ -44,25 +44,43 @@ static PyObject *hash_func(void (*func)(const char*, uint32_t, char*), PyObject 
     return value;
 }
 
-static PyObject *x16o_getpowhash(PyObject *self, PyObject *args)
+static PyObject *x16o512_gethash(PyObject *self, PyObject *args)
 {
-    return hash_func(x16o_hash, self, args, 64);
+    return hash_func(x16o512_hash, self, args, 64);
 }
 
-static PyObject *x16r_getpowhash(PyObject *self, PyObject *args)
+static PyObject *x16r512_gethash(PyObject *self, PyObject *args)
 {
-    return hash_func(x16r_hash, self, args, 64);
+    return hash_func(x16r512_hash, self, args, 64);
 }
 
-static PyObject *x16c_getpowhash(PyObject *self, PyObject *args)
+static PyObject *x16c512_gethash(PyObject *self, PyObject *args)
 {
-    return hash_func(x16c_hash, self, args, 1024);
+    return hash_func(x16c512_hash, self, args, 1024);
+}
+
+static PyObject *x16o256_gethash(PyObject *self, PyObject *args)
+{
+    return hash_func(x16o256_hash, self, args, 32);
+}
+
+static PyObject *x16r256_gethash(PyObject *self, PyObject *args)
+{
+    return hash_func(x16r256_hash, self, args, 32);
+}
+
+static PyObject *x16c256_gethash(PyObject *self, PyObject *args)
+{
+    return hash_func(x16c256_hash, self, args, 512);
 }
 
 static PyMethodDef X16Methods[] = {
-    { "getPoWHash_o", x16o_getpowhash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
-    { "getPoWHash_r", x16r_getpowhash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
-    { "getPoWHash_c", x16c_getpowhash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_512o", x16o512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_512r", x16r512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_512c", x16c512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_256o", x16o256_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_256r", x16r256_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_256c", x16c256_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
     { NULL, NULL, 0, NULL }
 };
 

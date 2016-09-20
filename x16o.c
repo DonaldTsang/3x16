@@ -18,10 +18,10 @@
 #include "sha3/sph_hamsi.h"
 #include "sha3/sph_fugue.h"
 #include "sha3/sph_shabal.h"
-#include "sha3/sph_whirlpool.h"
+#include "sha3/sph_whirlpond.h"
 #include "sha3/sph_sha2.h"
 
-void x16o_hash(const char* input, uint32_t x, char* output)
+void x16o512_hash(const char* input, uint32_t x, char* output)
 {
     sph_blake512_context    ctx_blake;
     sph_bmw512_context      ctx_bmw;
@@ -108,5 +108,95 @@ void x16o_hash(const char* input, uint32_t x, char* output)
     sph_sha512_close(&ctx_sha2, hashB);
 
     memcpy(output, hashA, 64);
+
+}
+
+void x16o256_hash(const char* input, uint32_t x, char* output)
+{
+    sph_blake256_context    ctx_blake;
+    sph_bmw256_context      ctx_bmw;
+    sph_groestl256_context  ctx_groestl;
+    sph_skein256_context    ctx_skein;
+    sph_jh256_context       ctx_jh;
+    sph_keccak256_context   ctx_keccak;
+    sph_luffa256_context    ctx_luffa1;
+    sph_cubehash256_context ctx_cubehash1;
+    sph_shavite256_context  ctx_shavite1;
+    sph_simd256_context     ctx_simd1;
+    sph_echo256_context     ctx_echo1;
+    sph_hamsi256_context    ctx_hamsi1;
+    sph_fugue256_context    ctx_fugue1;
+    sph_shabal256_context   ctx_shabal1;
+    sph_whirlpond_context   ctx_whirlpond1;
+    sph_sha256_context      ctx_sha2;
+
+    //these uint512 in the c++ source of the client are backed by an array of uint32
+    uint16_t hashA[16], hashB[16];	
+
+    sph_blake256_init(&ctx_blake);
+    sph_blake256 (&ctx_blake, input, x);
+    sph_blake256_close (&ctx_blake, hashA);
+
+    sph_bmw256_init(&ctx_bmw);
+    sph_bmw256 (&ctx_bmw, hashA, 32);
+    sph_bmw256_close(&ctx_bmw, hashB);
+
+    sph_groestl256_init(&ctx_groestl);
+    sph_groestl256 (&ctx_groestl, hashB, 32);
+    sph_groestl256_close(&ctx_groestl, hashA);
+
+    sph_skein256_init(&ctx_skein);
+    sph_skein256 (&ctx_skein, hashA, 32);
+    sph_skein256_close (&ctx_skein, hashB);
+
+    sph_jh256_init(&ctx_jh);
+    sph_jh256 (&ctx_jh, hashB, 32);
+    sph_jh256_close(&ctx_jh, hashA);
+
+    sph_keccak256_init(&ctx_keccak);
+    sph_keccak256 (&ctx_keccak, hashA, 32);
+    sph_keccak256_close(&ctx_keccak, hashB);
+
+    sph_luffa256_init (&ctx_luffa1);
+    sph_luffa256 (&ctx_luffa1, hashB, 32);
+    sph_luffa256_close (&ctx_luffa1, hashA);
+
+    sph_cubehash256_init (&ctx_cubehash1); 
+    sph_cubehash256 (&ctx_cubehash1, hashA, 32);
+    sph_cubehash256_close(&ctx_cubehash1, hashB);
+
+    sph_shavite256_init (&ctx_shavite1);
+    sph_shavite256 (&ctx_shavite1, hashB, 32);
+    sph_shavite256_close(&ctx_shavite1, hashA);
+
+    sph_simd256_init (&ctx_simd1);
+    sph_simd256 (&ctx_simd1, hashA, 32);
+    sph_simd256_close(&ctx_simd1, hashB);
+
+    sph_echo256_init (&ctx_echo1);
+    sph_echo256 (&ctx_echo1, hashB, 32);
+    sph_echo256_close(&ctx_echo1, hashA);
+
+    sph_hamsi256_init (&ctx_hamsi1);
+    sph_hamsi256 (&ctx_hamsi1, hashA, 32);
+    sph_hamsi256_close(&ctx_hamsi1, hashB);
+
+    sph_fugue256_init (&ctx_fugue1);
+    sph_fugue256 (&ctx_fugue1, hashB, 32);
+    sph_fugue256_close(&ctx_fugue1, hashA);
+
+    sph_shabal256_init (&ctx_shabal1);
+    sph_shabal256 (&ctx_shabal1, hashA, 32);
+    sph_shabal256_close(&ctx_shabal1, hashB);
+
+    sph_whirlpond_init (&ctx_whirlpond1);
+    sph_whirlpond (&ctx_whirlpond1, hashB, 32);
+    sph_whirlpond_close(&ctx_whirlpond1, hashA);
+
+    sph_sha256_init (&ctx_sha2);
+    sph_sha256 (&ctx_sha2, hashA, 32);
+    sph_sha256_close(&ctx_sha2, hashB);
+
+    memcpy(output, hashA, 32);
 
 }
