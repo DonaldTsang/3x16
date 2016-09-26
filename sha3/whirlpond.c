@@ -3475,6 +3475,31 @@ MAKE_CLOSE(whirlpool)
 MAKE_CLOSE(whirlpool0)
 MAKE_CLOSE(whirlpool1)
 
+/*
+#define sph_whirlpond_context sph_whirlpool_context
+
+void sph_whirlpond_init(sph_whirlpond_context *cc)
+{
+	sph_whirlpool_init(cc);
+}
+
+void sph_whirlpond(sph_whirlpond_context *cc, const void *data, size_t len)
+{
+	sph_whirlpond(cc, data, len)
+}
+
+void sph_whirlpond_close(sph_whirlpond_context *cc, *dst)
+{
+	uint16_t var1[32], var2[16];
+	sph_whirlpool_close(cc, var1);
+	char i;
+	for (i = 0; i < 16; i += 1){
+		var2[i] = var1[i] ^ var1[16+i];
+	}
+	memcpy(dst, var2, 32)
+}
+*/
+
 #ifdef __cplusplus
 }
 #endif
