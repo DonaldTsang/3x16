@@ -3475,7 +3475,6 @@ MAKE_CLOSE(whirlpool)
 MAKE_CLOSE(whirlpool0)
 MAKE_CLOSE(whirlpool1)
 
-/*
 #define sph_whirlpond_context sph_whirlpool_context
 
 void sph_whirlpond_init(sph_whirlpond_context *cc)
@@ -3496,9 +3495,8 @@ void sph_whirlpond_close(sph_whirlpond_context *cc, *dst)
 	for (i = 0; i < 16; i += 1){
 		var2[i] = var1[i] ^ var1[16+i];
 	}
-	memcpy(dst, var2, 32)
+	memcpy(dst, var2, 32) // i am pretty sure this will cause problems
 }
-*/
 
 #ifdef __cplusplus
 }

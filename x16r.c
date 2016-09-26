@@ -68,7 +68,7 @@ void x16r512_hash(const char* input, uint32_t x, char* output)
 
     sph_bmw512_init(&ctx_bmw);
     sph_bmw512 (&ctx_bmw, input, x);
-    sph_bmw512_close(&ctx_bmw, hashB);
+    sph_bmw512_close(&ctx_bmw, hashA);
 
     xor512_hash(hashA, hashB);
 
@@ -191,7 +191,7 @@ void x16r256_hash(const char* input, uint32_t x, char* output)
 
     sph_bmw256_init(&ctx_bmw);
     sph_bmw256 (&ctx_bmw, input, x);
-    sph_bmw256_close(&ctx_bmw, hashB);
+    sph_bmw256_close(&ctx_bmw, hashA);
 
     xor256_hash(hashA, hashB);
 
