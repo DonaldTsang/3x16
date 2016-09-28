@@ -210,7 +210,7 @@ void sph_whirlpond_init(sph_whirlpond_context *cc);
 
 void sph_whirlpond(sph_whirlpond_context *cc, const void *data, size_t len);
 
-void sph_whirlpond_close(sph_whirlpond_context *cc, *dst);
+void sph_whirlpond_close(sph_whirlpond_context *cc, void *dst);
 
 #endif
 

@@ -49,7 +49,7 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "sph_whirlpool.h"
+#include "sph_whirlpond.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -3484,10 +3484,10 @@ void sph_whirlpond_init(sph_whirlpond_context *cc)
 
 void sph_whirlpond(sph_whirlpond_context *cc, const void *data, size_t len)
 {
-	sph_whirlpond(cc, data, len)
+	sph_whirlpond(cc, data, len);
 }
 
-void sph_whirlpond_close(sph_whirlpond_context *cc, *dst)
+void sph_whirlpond_close(sph_whirlpond_context *cc, void *dst)
 {
 	uint16_t var1[32], var2[16];
 	sph_whirlpool_close(cc, var1);
@@ -3495,7 +3495,7 @@ void sph_whirlpond_close(sph_whirlpond_context *cc, *dst)
 	for (i = 0; i < 16; i += 1){
 		var2[i] = var1[i] ^ var1[16+i];
 	}
-	memcpy(dst, var2, 32) // i am pretty sure this will cause problems
+	memcpy(dst, var2, 32); // i am pretty sure this will cause problems
 }
 
 #ifdef __cplusplus
