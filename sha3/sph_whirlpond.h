@@ -206,11 +206,11 @@ void sph_whirlpool1_close(void *cc, void *dst);
 
 #define sph_whirlpond_context sph_whirlpool_context
 
-void sph_whirlpond_init(sph_whirlpond_context *cc);
+void sph_whirlpond_init(void *cc);
 
-void sph_whirlpond(sph_whirlpond_context *cc, const void *data, size_t len);
+void sph_whirlpond(void *cc, const void *data, size_t len);
 
-void sph_whirlpond_close(sph_whirlpond_context *cc, void *dst);
+void sph_whirlpond_close(void *cc, void *dst);
 
 #endif
 

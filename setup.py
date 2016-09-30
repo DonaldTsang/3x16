@@ -21,6 +21,7 @@ x16_hash_module = Extension('x16_hash',
         'sha3/shavite.c',
         'sha3/shabal.c',
         'sha3/whirlpond.c',
+        'sha3/sha2.c',
         'sha3/sha2big.c'],
     include_dirs=['.', './sha3'])
 
