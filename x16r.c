@@ -23,7 +23,7 @@
 
 void xor512_hash(const uint32_t input[16], uint32_t output[16])
 {
-    char i;
+    unsigned char i;
     for (i = 0; i < 16; i += 1){
         output[i] ^= input[i];
     }
@@ -31,7 +31,7 @@ void xor512_hash(const uint32_t input[16], uint32_t output[16])
 
 void xor256_hash(const uint16_t input[16], uint16_t output[16])
 {
-    char i;
+    unsigned char i;
     for (i = 0; i < 16; i += 1){
         output[i] ^= input[i];
     }

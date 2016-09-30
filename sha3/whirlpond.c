@@ -48,6 +48,7 @@
 
 #include <stddef.h>
 #include <string.h>
+#include <stdint.h>
 
 #include "sph_whirlpond.h"
 
@@ -3491,7 +3492,7 @@ void sph_whirlpond_close(sph_whirlpond_context *cc, void *dst)
 {
 	uint16_t var1[32], var2[16];
 	sph_whirlpool_close(cc, var1);
-	char i;
+	unsigned char i;
 	for (i = 0; i < 16; i += 1){
 		var2[i] = var1[i] ^ var1[16+i];
 	}
