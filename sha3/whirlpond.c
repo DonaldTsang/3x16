@@ -3485,14 +3485,14 @@ void sph_whirlpond_init(void *cc)
 
 void sph_whirlpond(void *cc, const void *data, size_t len)
 {
-	sph_whirlpond(cc, data, len);
+	sph_whirlpool(cc, data, len);
 }
 
 void sph_whirlpond_close(void *cc, void *dst)
 {
 	uint16_t var1[32], var2[16];
 	sph_whirlpool_close(cc, var1);
-	unsigned char i;
+	uint8_t i;
 	for (i = 0; i < 16; i += 1){
 		var2[i] = var1[i] ^ var1[16+i];
 	}

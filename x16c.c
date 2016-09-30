@@ -111,7 +111,7 @@ void x16c512_hash(const char* input, uint32_t x, char* output)
     sph_sha512 (&ctx_sha2, input, x);
     sph_sha512_close(&ctx_sha2, hashF);
 
-    unsigned char i;
+    uint8_t i;
     for (i = 0; i < 16; i += 1){
         hash[16*i+0] = hash0[i]; hash[16*i+1] = hash1[i]; hash[16*i+2] = hash2[i]; hash[16*i+3] = hash3[i];
         hash[16*i+4] = hash4[i]; hash[16*i+5] = hash5[i]; hash[16*i+6] = hash6[i]; hash[16*i+7] = hash7[i];
@@ -213,7 +213,7 @@ void x16c256_hash(const char* input, uint32_t x, char* output)
     sph_sha256 (&ctx_sha2, input, x);
     sph_sha256_close(&ctx_sha2, hashF);
 
-    unsigned char i;
+    uint8_t i;
     for (i = 0; i < 16; i += 1){
         hash[16*i+0] = hash0[i]; hash[16*i+1] = hash1[i]; hash[16*i+2] = hash2[i]; hash[16*i+3] = hash3[i];
         hash[16*i+4] = hash4[i]; hash[16*i+5] = hash5[i]; hash[16*i+6] = hash6[i]; hash[16*i+7] = hash7[i];
