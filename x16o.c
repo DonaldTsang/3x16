@@ -200,3 +200,93 @@ void x16o256_hash(const char* input, uint32_t x, char* output)
     memcpy(output, hashA, 32);
 
 }
+
+void x16o384_hash(const char* input, uint32_t x, char* output)
+{
+    sph_blake384_context    ctx_blake;
+    sph_bmw384_context      ctx_bmw;
+    sph_groestl384_context  ctx_groestl;
+    sph_skein384_context    ctx_skein;
+    sph_jh384_context       ctx_jh;
+    sph_keccak384_context   ctx_keccak;
+    sph_luffa384_context    ctx_luffa1;
+    sph_cubehash384_context ctx_cubehash1;
+    sph_shavite384_context  ctx_shavite1;
+    sph_simd384_context     ctx_simd1;
+    sph_echo384_context     ctx_echo1;
+    sph_hamsi384_context    ctx_hamsi1;
+    sph_fugue384_context    ctx_fugue1;
+    sph_shabal384_context   ctx_shabal1;
+    sph_whirlpudl_context   ctx_whirlpond1;
+    sph_sha384_context      ctx_sha2;
+
+    //these uint512 in the c++ source of the client are backed by an array of uint32
+    uint16_t hashA[24], hashB[24];	
+
+    sph_blake384_init(&ctx_blake);
+    sph_blake384 (&ctx_blake, input, x);
+    sph_blake384_close (&ctx_blake, hashA);
+
+    sph_bmw384_init(&ctx_bmw);
+    sph_bmw384 (&ctx_bmw, hashA, 48);
+    sph_bmw384_close(&ctx_bmw, hashB);
+
+    sph_groestl384_init(&ctx_groestl);
+    sph_groestl384 (&ctx_groestl, hashB, 48);
+    sph_groestl384_close(&ctx_groestl, hashA);
+
+    sph_skein384_init(&ctx_skein);
+    sph_skein384 (&ctx_skein, hashA, 48);
+    sph_skein384_close (&ctx_skein, hashB);
+
+    sph_jh384_init(&ctx_jh);
+    sph_jh384 (&ctx_jh, hashB, 48);
+    sph_jh384_close(&ctx_jh, hashA);
+
+    sph_keccak384_init(&ctx_keccak);
+    sph_keccak384 (&ctx_keccak, hashA, 48);
+    sph_keccak384_close(&ctx_keccak, hashB);
+
+    sph_luffa384_init (&ctx_luffa1);
+    sph_luffa384 (&ctx_luffa1, hashB, 48);
+    sph_luffa384_close (&ctx_luffa1, hashA);
+
+    sph_cubehash384_init (&ctx_cubehash1); 
+    sph_cubehash384 (&ctx_cubehash1, hashA, 48);
+    sph_cubehash384_close(&ctx_cubehash1, hashB);
+
+    sph_shavite384_init (&ctx_shavite1);
+    sph_shavite384 (&ctx_shavite1, hashB, 48);
+    sph_shavite384_close(&ctx_shavite1, hashA);
+
+    sph_simd384_init (&ctx_simd1);
+    sph_simd384 (&ctx_simd1, hashA, 48);
+    sph_simd384_close(&ctx_simd1, hashB);
+
+    sph_echo384_init (&ctx_echo1);
+    sph_echo384 (&ctx_echo1, hashB, 48);
+    sph_echo384_close(&ctx_echo1, hashA);
+
+    sph_hamsi384_init (&ctx_hamsi1);
+    sph_hamsi384 (&ctx_hamsi1, hashA, 48);
+    sph_hamsi384_close(&ctx_hamsi1, hashB);
+
+    sph_fugue384_init (&ctx_fugue1);
+    sph_fugue384 (&ctx_fugue1, hashB, 48);
+    sph_fugue384_close(&ctx_fugue1, hashA);
+
+    sph_shabal384_init (&ctx_shabal1);
+    sph_shabal384 (&ctx_shabal1, hashA, 48);
+    sph_shabal384_close(&ctx_shabal1, hashB);
+
+    sph_whirlpudl_init (&ctx_whirlpond1);
+    sph_whirlpudl (&ctx_whirlpond1, hashB, 48);
+    sph_whirlpudl_close(&ctx_whirlpond1, hashA);
+
+    sph_sha384_init (&ctx_sha2);
+    sph_sha384 (&ctx_sha2, hashA, 48);
+    sph_sha384_close(&ctx_sha2, hashB);
+
+    memcpy(output, hashA, 48);
+
+}

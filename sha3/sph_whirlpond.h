@@ -212,6 +212,14 @@ void sph_whirlpond(void *cc, const void *data, size_t len);
 
 void sph_whirlpond_close(void *cc, void *dst);
 
+typedef sph_whirlpool_context sph_whirlpudl_context;
+
+void sph_whirlpudl_init(void *cc);
+
+void sph_whirlpudl(void *cc, const void *data, size_t len);
+
+void sph_whirlpudl_close(void *cc, void *dst);
+
 #endif
 
 #endif

@@ -3476,8 +3476,6 @@ MAKE_CLOSE(whirlpool)
 MAKE_CLOSE(whirlpool0)
 MAKE_CLOSE(whirlpool1)
 
-#define sph_whirlpond_context sph_whirlpool_context
-
 void sph_whirlpond_init(void *cc)
 {
 	sph_whirlpool_init(cc);
@@ -3490,13 +3488,34 @@ void sph_whirlpond(void *cc, const void *data, size_t len)
 
 void sph_whirlpond_close(void *cc, void *dst)
 {
-	uint16_t var1[32], var2[16];
-	sph_whirlpool_close(cc, var1);
+	uint16_t var0[32], var1[16];
+	sph_whirlpool_close(cc, var0);
 	uint8_t i;
 	for (i = 0; i < 16; i += 1){
-		var2[i] = var1[i] ^ var1[16+i];
+		var1[i] = var0[i] ^ var0[16+i];
 	}
-	memcpy(dst, var2, 32); // i am pretty sure this will cause problems
+	memcpy(dst, var1, 32); // i am pretty sure this will cause problems
+}
+
+void sph_whirlpudl_init(void *cc)
+{
+	sph_whirlpool_init(cc);
+}
+
+void sph_whirlpudl(void *cc, const void *data, size_t len)
+{
+	sph_whirlpool(cc, data, len);
+}
+
+void sph_whirlpudl_close(void *cc, void *dst)
+{
+	uint16_t var0[32], var1[24];
+	sph_whirlpool_close(cc, var0);
+	uint8_t i;
+	for (i = 0; i < 24; i += 1){
+		var1[i] = var0[i] ^ var0[8+i];
+	}
+	memcpy(dst, var1, 48); // i am pretty sure this will cause problems
 }
 
 #ifdef __cplusplus

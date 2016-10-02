@@ -74,6 +74,21 @@ static PyObject *x16c256_gethash(PyObject *self, PyObject *args)
     return hash_func(x16c256_hash, self, args, 512);
 }
 
+static PyObject *x16o384_gethash(PyObject *self, PyObject *args)
+{
+    return hash_func(x16o384_hash, self, args, 48);
+}
+
+static PyObject *x16r384_gethash(PyObject *self, PyObject *args)
+{
+    return hash_func(x16r384_hash, self, args, 48);
+}
+
+static PyObject *x16c384_gethash(PyObject *self, PyObject *args)
+{
+    return hash_func(x16c384_hash, self, args, 768);
+}
+
 static PyMethodDef X16Methods[] = {
     { "getHash_512o", x16o512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
     { "getHash_512r", x16r512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
@@ -81,6 +96,9 @@ static PyMethodDef X16Methods[] = {
     { "getHash_256o", x16o256_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
     { "getHash_256r", x16r256_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
     { "getHash_256c", x16c256_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_384o", x16o384_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_384r", x16r384_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
+    { "getHash_384c", x16c384_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
     { NULL, NULL, 0, NULL }
 };
 

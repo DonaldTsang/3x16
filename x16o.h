@@ -9,6 +9,7 @@ extern "C" {
 
 void x16o512_hash(const char* input, uint32_t x, char* output);
 void x16o256_hash(const char* input, uint32_t x, char* output);
+void x16o384_hash(const char* input, uint32_t x, char* output);
 
 #ifdef __cplusplus
 }
