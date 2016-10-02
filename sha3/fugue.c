@@ -35,6 +35,10 @@
 
 #include "sph_fugue.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #ifdef _MSC_VER
 #pragma warning (disable: 4146)
 #endif
@@ -1281,3 +1285,7 @@ sph_fugue512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 {
 	fugue4_close(cc, ub, n, dst);
 }
+
+#ifdef __cplusplus
+}
+#endif
