@@ -238,7 +238,7 @@ void x16c384_hash(const char* input, uint32_t x, char* output)
 
     //these uint256 in the c++ source of the client are backed by an array of uint32
     uint8_t hash0[16][16][3];
-    uint8_t hash[256][3];
+    uint8_t hash1[256][3];
 
     sph_blake384_init(&ctx_blake);
     sph_blake384 (&ctx_blake, input, x);
