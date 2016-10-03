@@ -76,6 +76,10 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #ifdef _MSC_VER
 #pragma warning (disable: 4146)
 #endif
@@ -344,3 +348,7 @@ SPH_XCAT(HASH, _close)(void *cc, void *dst, unsigned rnum)
 {
 	SPH_XCAT(HASH, _addbits_and_close)(cc, 0, 0, dst, rnum);
 }
+
+#ifdef __cplusplus
+}
+#endif

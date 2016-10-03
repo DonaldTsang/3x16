@@ -44,9 +44,11 @@
  */
 
 #include "sph_types.h"
+
 #ifdef __cplusplus
 extern "C"{
 #endif
+
 #if AES_BIG_ENDIAN
 
 #define AESx(x)   ( ((SPH_C32(x) >> 24) & SPH_C32(0x000000FF)) \

@@ -801,6 +801,7 @@ sph_shabal512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 {
 	shabal_close(cc, ub, n, dst, 16);
 }
+
 #ifdef __cplusplus
 }
 #endif
