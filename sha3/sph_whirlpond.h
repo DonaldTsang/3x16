@@ -48,6 +48,10 @@
 #ifndef SPH_WHIRLPOOL_H__
 #define SPH_WHIRLPOOL_H__
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #include <stddef.h>
 #include "sph_types.h"
 
@@ -220,6 +224,10 @@ void sph_whirlpudl(void *cc, const void *data, size_t len);
 
 void sph_whirlpudl_close(void *cc, void *dst);
 
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif

@@ -302,6 +302,7 @@ void sph_simd512_close(void *cc, void *dst);
  */
 void sph_simd512_addbits_and_close(
 	void *cc, unsigned ub, unsigned n, void *dst);
+
 #ifdef __cplusplus
 }
 #endif
