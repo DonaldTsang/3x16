@@ -11,11 +11,11 @@ There are empty lines between:
     and headers/footers
 
 THIS THIS THE HEADER FOR .c AND .h FILES
-#ifdef __cplusplus
-extern "C"{
-#endif
+>#ifdef __cplusplus
+>extern "C"{
+>#endif
 
 THIS THIS THE HEADER FOR .c AND .h FILES
-#ifdef __cplusplus
-}
-#endif
+>#ifdef __cplusplus
+>}
+>#endif
