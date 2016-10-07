@@ -7,9 +7,9 @@
 - There are no empty lines at the end of files
 - There are no "double empty lines"
 - There are empty lines between
-> - `#include <standard library>`,
-> - `#include "sphlib .h files"`,
-> - and headers/footers
+- > `#include <standard library>`,
+- > `#include "sphlib .h files"`,
+- > and headers/footers
 
 #Headers for .c and .h files
 ```
