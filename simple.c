@@ -15,19 +15,23 @@
 #include "sha3/sph_whirlpond.h"
 #include "sha3/sph_sha2.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #define SIMPLE(name) \
-void simple_ ## name ## (const char* input, uint32_t x, char* output) \
+void hash_ ## name(const char* input, uint32_t x, char* output) \
 { \
     sph_ ## name ## _context ctx; \
     sph_ ## name ## _init(&ctx); \
-    sph_ ## name ## (&ctx, input, x); \
+    sph_ ## name(&ctx, input, x); \
     sph_ ## name ## _close(&ctx, output); \
 }
 
 #define SIMPLE_LOOP(name) \
-SIMPLE(name ## 256) \
-SIMPLE(name ## 384) \
-SIMPLE(name ## 512)
+SIMPLE(256 ## name) \
+SIMPLE(384 ## name) \
+SIMPLE(512 ## name)
 
 SIMPLE_LOOP(blake)
 SIMPLE_LOOP(bmw)
@@ -43,8 +47,13 @@ SIMPLE_LOOP(echo)
 SIMPLE_LOOP(hamsi)
 SIMPLE_LOOP(fugue)
 SIMPLE_LOOP(shabal)
+
 SIMPLE_LOOP(sha)
 
 SIMPLE(whirlpool)
 SIMPLE(whirlpond)
 SIMPLE(whirlpudl)
+
+#ifdef __cplusplus
+}
+#endif
