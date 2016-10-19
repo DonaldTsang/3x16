@@ -1,39 +1,43 @@
 #ifndef SIMPLE_H
 #define SIMPLE_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C"{
 #endif
 
-#define SIMPLE_H(name) \
-void hash_ ## name(const char* input, uint32_t x, char* output)
+#define SIMPLER(name, size) \
+void hash_ ## size ## ## name(const char* input, uint32_t x, char* output);
 
-#define SIMPLE_H_LOOP(name) \
-SIMPLE_H(256 ## name) \
-SIMPLE_H(384 ## name) \
-SIMPLE_H(512 ## name)
+#define SIMPLER_LOOP(name) \
+SIMPLER(name, 256) \
+SIMPLER(name, 384) \
+SIMPLER(name, 512)
 
-SIMPLE_H_LOOP(blake)
-SIMPLE_H_LOOP(bmw)
-SIMPLE_H_LOOP(groestl)
-SIMPLE_H_LOOP(jh)
-SIMPLE_H_LOOP(keccak)
-SIMPLE_H_LOOP(skein)
-SIMPLE_H_LOOP(luffa)
-SIMPLE_H_LOOP(cubehash)
-SIMPLE_H_LOOP(shavite)
-SIMPLE_H_LOOP(simd)
-SIMPLE_H_LOOP(echo)
-SIMPLE_H_LOOP(hamsi)
-SIMPLE_H_LOOP(fugue)
-SIMPLE_H_LOOP(shabal)
+SIMPLER_LOOP(blake)
+SIMPLER_LOOP(bmw)
+SIMPLER_LOOP(groestl)
+SIMPLER_LOOP(jh)
+SIMPLER_LOOP(keccak)
+SIMPLER_LOOP(skein)
+SIMPLER_LOOP(luffa)
+SIMPLER_LOOP(cubehash)
+SIMPLER_LOOP(shavite)
+SIMPLER_LOOP(simd)
+SIMPLER_LOOP(echo)
+SIMPLER_LOOP(hamsi)
+SIMPLER_LOOP(fugue)
+SIMPLER_LOOP(shabal)
 
-SIMPLE_H_LOOP(sha)
+SIMPLER_LOOP(sha)
 
-SIMPLE_H(whirlpool)
-SIMPLE_H(whirlpond)
-SIMPLE_H(whirlpudl)
+SIMPLER(whirlpool, )
+SIMPLER(whirlpond, )
+SIMPLER(whirlpudl, )
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

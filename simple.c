@@ -19,19 +19,19 @@
 extern "C"{
 #endif
 
-#define SIMPLE(name) \
-void hash_ ## name(const char* input, uint32_t x, char* output) \
+#define SIMPLE(name, size) \
+void hash_ ## size ## ## name(const char* input, uint32_t x, char* output) \
 { \
-    sph_ ## name ## _context ctx; \
-    sph_ ## name ## _init(&ctx); \
-    sph_ ## name(&ctx, input, x); \
-    sph_ ## name ## _close(&ctx, output); \
+    sph_ ## name ## ## size ## _context ctx; \
+    sph_ ## name ## ## size ## _init(&ctx); \
+    sph_ ## name ## ## size(&ctx, input, x); \
+    sph_ ## name ## ## size ## _close(&ctx, output); \
 }
 
 #define SIMPLE_LOOP(name) \
-SIMPLE(256 ## name) \
-SIMPLE(384 ## name) \
-SIMPLE(512 ## name)
+SIMPLE(name, 256) \
+SIMPLE(name, 384) \
+SIMPLE(name, 512)
 
 SIMPLE_LOOP(blake)
 SIMPLE_LOOP(bmw)
@@ -50,9 +50,9 @@ SIMPLE_LOOP(shabal)
 
 SIMPLE_LOOP(sha)
 
-SIMPLE(whirlpool)
-SIMPLE(whirlpond)
-SIMPLE(whirlpudl)
+SIMPLE(whirlpool, )
+SIMPLE(whirlpond, )
+SIMPLE(whirlpudl, )
 
 #ifdef __cplusplus
 }

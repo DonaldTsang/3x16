@@ -3,6 +3,7 @@
 #include "x16o.h"
 #include "x16r.h"
 #include "x16c.h"
+#include "simple.h"
 
 static PyObject *hash_func(void (*func)(const char*, uint32_t, char*), PyObject *self, PyObject *args, const unsigned int buf_size)
 {
@@ -92,15 +93,15 @@ static PyObject *x16c384_gethash(PyObject *self, PyObject *args)
 #define HASHER(name) \
 static PyObject *gethash256_ ## name(PyObject *self, PyObject *args) \
 { \
-    return hash_func(hash256 ## name, self, args, 32); \
+    return hash_func(hash_256 ## name, self, args, 32); \
 } \
 static PyObject *gethash384_ ## name(PyObject *self, PyObject *args) \
 { \
-    return hash_func(hash384 ## name, self, args, 48); \
+    return hash_func(hash_384 ## name, self, args, 48); \
 } \
 static PyObject *gethash512_ ## name(PyObject *self, PyObject *args) \
 { \
-    return hash_func(hash512 ## name, self, args, 64); \
+    return hash_func(hash_512 ## name, self, args, 64); \
 }
 
 HASHER(blake)
@@ -120,19 +121,19 @@ HASHER(shabal)
 
 HASHER(sha)
 
-static PyObject *gethash_Whirlpond(PyObject *self, PyObject *args)
+static PyObject *gethash_whirlpond(PyObject *self, PyObject *args)
 {
-    return hash_func(hash_Whirlpond, self, args, 32);
+    return hash_func(hash_whirlpond, self, args, 32);
 }
 
-static PyObject *gethash_Whirlpudl(PyObject *self, PyObject *args)
+static PyObject *gethash_whirlpudl(PyObject *self, PyObject *args)
 {
-    return hash_func(hash_Whirlpudl, self, args, 48);
+    return hash_func(hash_whirlpudl, self, args, 48);
 }
 
-static PyObject *gethash_Whirlpool(PyObject *self, PyObject *args)
+static PyObject *gethash_whirlpool(PyObject *self, PyObject *args)
 {
-    return hash_func(hash_Whirlpool, self, args, 64);
+    return hash_func(hash_whirlpool, self, args, 64);
 }
 
 #define HASH_ARRAY(name) \
@@ -165,9 +166,9 @@ static PyMethodDef X16Methods[] = {
 	HASH_ARRAY(fugue)
 	HASH_ARRAY(shabal)
 	HASH_ARRAY(sha)
-	{"gethash_whirlpond", gethash256_whirlpond, METH_VARARGS, "Returns the 256 bit hash of whirlpond"},
-	{"gethash_whirlpudl", gethash384_whirlpudl, METH_VARARGS, "Returns the 384 bit hash of whirlpudl"},
-	{"gethash_whirlpool", gethash512_whirlpool, METH_VARARGS, "Returns the 512 bit hash of whirlpool"},
+	{"gethash_whirlpond", gethash_whirlpond, METH_VARARGS, "Returns the 256 bit hash of whirlpond"},
+	{"gethash_whirlpudl", gethash_whirlpudl, METH_VARARGS, "Returns the 384 bit hash of whirlpudl"},
+	{"gethash_whirlpool", gethash_whirlpool, METH_VARARGS, "Returns the 512 bit hash of whirlpool"},
     { NULL, NULL, 0, NULL }
 };
 
