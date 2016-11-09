@@ -118,7 +118,7 @@ HASHER(echo)
 HASHER(hamsi)
 HASHER(fugue)
 HASHER(shabal)
-
+// HASHER(whirl)
 HASHER(sha)
 
 static PyObject *gethash_whirlpond(PyObject *self, PyObject *args)
@@ -137,9 +137,9 @@ static PyObject *gethash_whirlpool(PyObject *self, PyObject *args)
 }
 
 #define HASH_ARRAY(name) \
-{"gethash_256" #name, gethash256_ ## name, METH_VARARGS, "Returns the 256 bit hash of" #name}, \
-{"gethash_384" #name, gethash384_ ## name, METH_VARARGS, "Returns the 384 bit hash of" #name}, \
-{"gethash_512" #name, gethash512_ ## name, METH_VARARGS, "Returns the 512 bit hash of" #name}, 
+{"getHash_256" #name, gethash256_ ## name, METH_VARARGS, "Returns the 256 bit hash of" #name}, \
+{"getHash_384" #name, gethash384_ ## name, METH_VARARGS, "Returns the 384 bit hash of" #name}, \
+{"getHash_512" #name, gethash512_ ## name, METH_VARARGS, "Returns the 512 bit hash of" #name}, 
 
 static PyMethodDef X16Methods[] = {
     { "getHash_512o", x16o512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
@@ -165,6 +165,7 @@ static PyMethodDef X16Methods[] = {
 	HASH_ARRAY(hamsi)
 	HASH_ARRAY(fugue)
 	HASH_ARRAY(shabal)
+    // HASH_ARRAY(whirl)
 	HASH_ARRAY(sha)
 	{"gethash_whirlpond", gethash_whirlpond, METH_VARARGS, "Returns the 256 bit hash of whirlpond"},
 	{"gethash_whirlpudl", gethash_whirlpudl, METH_VARARGS, "Returns the 384 bit hash of whirlpudl"},

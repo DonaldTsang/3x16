@@ -1136,7 +1136,7 @@ static const sph_u64 plain_RC[10] = {
 /* ====================================================================== */
 
 #define DECL8(z)   sph_u64 z ## 0, z ## 1, z ## 2, z ## 3, \
-                   z ## 4, z ## 5, z ## 6, z ## 7
+				   z ## 4, z ## 5, z ## 6, z ## 7
 
 #if SPH_LITTLE_FAST
 #define READ_DATA_W(x)   do { \
@@ -1313,9 +1313,20 @@ void sph_whirlpool_close(void *cc, void *dst)
 }
 
 
-void fermat(uint16_t out, const uint16_t in1, const uint16_t in2)
+void fermat(uint16_t const a, uint16_t const b, uint16_t x)
 {
-	uint32_t temp = in1 * in2; out = temp % (1 << 16 + 1);
+	uint32_t c;
+	uint16_t hi, lo;
+	if (a * b == 0)
+		if (a == 0)
+			x = -b + 1;
+		else
+			x = -a + 1;
+	else
+		c = (uint32_t)a * (uint32_t)b;
+		hi = c >> 16;
+		lo = c;
+		x = lo - hi + (lo > hi ? 0 : 1)
 }
 
 void sph_whirlpond_init(void *cc)

@@ -47,7 +47,7 @@ SIMPLE_LOOP(echo)
 SIMPLE_LOOP(hamsi)
 SIMPLE_LOOP(fugue)
 SIMPLE_LOOP(shabal)
-
+// SIMPLER_LOOP(whirl)
 SIMPLE_LOOP(sha)
 
 SIMPLE(whirlpool, )

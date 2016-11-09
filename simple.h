@@ -29,7 +29,7 @@ SIMPLER_LOOP(echo)
 SIMPLER_LOOP(hamsi)
 SIMPLER_LOOP(fugue)
 SIMPLER_LOOP(shabal)
-
+// SIMPLER_LOOP(whirl)
 SIMPLER_LOOP(sha)
 
 SIMPLER(whirlpool, )
