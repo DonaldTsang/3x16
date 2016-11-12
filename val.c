@@ -1,3 +1,8 @@
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdio.h>
+
 #include "sha3/sph_blake.h"
 #include "sha3/sph_bmw.h"
 #include "sha3/sph_groestl.h"
@@ -20,18 +25,18 @@ extern "C"{
 #endif
 
 #define HASH320(name) \
-void hash_ ## name ## 320_init(void *cc) \
+void sph_ ## name ## 320_init(void *cc) \
 { \
-	hash_ ## name ## 384_init(cc); \
+	sph_ ## name ## 384_init(cc); \
 } \
-void hash_ ## name ## 320(void *cc, const void *data, size_t len) \
+void sph_ ## name ## 320(void *cc, const void *data, size_t len) \
 { \
-	hash_ ## name ## 384(cc, data, len); \
+	sph_ ## name ## 384(cc, data, len); \
 } \
-void hash_ ## name ## 320_close(void *cc, void *dst) \
+void sph_ ## name ## 320_close(void *cc, void *dst) \
 { \
 	uint16_t var0[24], var1[20]; \
-	hash_ ## name ## 384(cc, var0); \
+	sph_ ## name ## 384_close(cc, var0); \
 	uint8_t i; \
 	for (i = 0; i < 20; i += 1){ \
 		var1[i] = var0[i] ^ var0[4+i]; \
@@ -40,18 +45,18 @@ void hash_ ## name ## 320_close(void *cc, void *dst) \
 }
 
 #define HASH448(name) \
-void hash_ ## name ## 448_init(void *cc) \
+void sph_ ## name ## 448_init(void *cc) \
 { \
-	hash_ ## name ## 512_init(cc); \
+	sph_ ## name ## 512_init(cc); \
 } \
-void hash_ ## name ## 448(void *cc, const void *data, size_t len) \
+void sph_ ## name ## 448(void *cc, const void *data, size_t len) \
 { \
-	hash_ ## name ## 512(cc, data, len); \
+	sph_ ## name ## 512(cc, data, len); \
 } \
-void hash_ ## name ## 448_close(void *cc, void *dst) \
+void sph_ ## name ## 448_close(void *cc, void *dst) \
 { \
 	uint16_t var0[32], var1[28]; \
-	hash_ ## name ## 512(cc, var0); \
+	sph_ ## name ## 512_close(cc, var0); \
 	uint8_t i; \
 	for (i = 0; i < 28; i += 1){ \
 		var1[i] = var0[i] ^ var0[4+i]; \

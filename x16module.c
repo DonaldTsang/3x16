@@ -156,7 +156,7 @@ HASHERS(sha)
 
 #define HASHS_ARRAY(name) \
 {"getHash_320" #name, gethash320_ ## name, METH_VARARGS, "Returns the 320 bit hash of" #name}, \
-{"getHash_448" #name, gethash448_ ## name, METH_VARARGS, "Returns the 448 bit hash of" #name}
+{"getHash_448" #name, gethash448_ ## name, METH_VARARGS, "Returns the 448 bit hash of" #name},
 
 static PyMethodDef X16Methods[] = {
     { "getHash_512o", x16o512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
@@ -184,22 +184,22 @@ static PyMethodDef X16Methods[] = {
 	HASH_ARRAY(shabal)
     HASH_ARRAY(whirl)
 	HASH_ARRAY(sha)
-	HASH_ARRAYS(blake)
-	HASH_ARRAYS(bmw)
-	HASH_ARRAYS(groestl)
-	HASH_ARRAYS(jh)
-	HASH_ARRAYS(keccak)
-	HASH_ARRAYS(skein)
-	HASH_ARRAYS(luffa)
-	HASH_ARRAYS(cubehash)
-	HASH_ARRAYS(shavite)
-	HASH_ARRAYS(simd)
-	HASH_ARRAYS(echo)
-	HASH_ARRAYS(hamsi)
-	HASH_ARRAYS(fugue)
-	HASH_ARRAYS(shabal)
-    HASH_ARRAYS(whirl)
-	HASH_ARRAYS(sha)
+	HASHS_ARRAY(blake)
+	HASHS_ARRAY(bmw)
+	HASHS_ARRAY(groestl)
+	HASHS_ARRAY(jh)
+	HASHS_ARRAY(keccak)
+	HASHS_ARRAY(skein)
+	HASHS_ARRAY(luffa)
+	HASHS_ARRAY(cubehash)
+	HASHS_ARRAY(shavite)
+	HASHS_ARRAY(simd)
+	HASHS_ARRAY(echo)
+	HASHS_ARRAY(hamsi)
+	HASHS_ARRAY(fugue)
+	HASHS_ARRAY(shabal)
+    HASHS_ARRAY(whirl)
+	HASHS_ARRAY(sha)
     { NULL, NULL, 0, NULL }
 };
 
