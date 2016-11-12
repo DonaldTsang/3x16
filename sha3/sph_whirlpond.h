@@ -83,7 +83,7 @@ typedef struct {
 	sph_u32 count_high, count_low;
 #endif
 #endif
-} sph_whirlpool_context;
+} sph_whirl512_context;
 
 /**
  * Initialize a WHIRLPOOL context. This process performs no memory allocation.
@@ -91,7 +91,7 @@ typedef struct {
  * @param cc   the WHIRLPOOL context (pointer to a
  *             <code>sph_whirlpool_context</code>)
  */
-void sph_whirlpool_init(void *cc);
+void sph_whirl512_init(void *cc);
 
 /**
  * Process some data bytes. It is acceptable that <code>len</code> is zero
@@ -102,7 +102,7 @@ void sph_whirlpool_init(void *cc);
  * @param data   the input data
  * @param len    the input data length (in bytes)
  */
-void sph_whirlpool(void *cc, const void *data, size_t len);
+void sph_whirl512(void *cc, const void *data, size_t len);
 
 /**
  * Terminate the current WHIRLPOOL computation and output the result into the
@@ -113,25 +113,25 @@ void sph_whirlpool(void *cc, const void *data, size_t len);
  * @param cc    the WHIRLPOOL context
  * @param dst   the destination buffer
  */
-void sph_whirlpool_close(void *cc, void *dst);
+void sph_whirl512_close(void *cc, void *dst);
 
 void fermat(uint16_t out, const uint16_t in1, const uint16_t in2);
 
-typedef sph_whirlpool_context sph_whirlpond_context;
+typedef sph_whirl512_context sph_whirl256_context;
 
-void sph_whirlpond_init(void *cc);
+void sph_whirl256_init(void *cc);
 
-void sph_whirlpond(void *cc, const void *data, size_t len);
+void sph_whirl256(void *cc, const void *data, size_t len);
 
-void sph_whirlpond_close(void *cc, void *dst);
+void sph_whirl256_close(void *cc, void *dst);
 
-typedef sph_whirlpool_context sph_whirlpudl_context;
+typedef sph_whirl512_context sph_whirl384_context;
 
-void sph_whirlpudl_init(void *cc);
+void sph_whirl384_init(void *cc);
 
-void sph_whirlpudl(void *cc, const void *data, size_t len);
+void sph_whirl384(void *cc, const void *data, size_t len);
 
-void sph_whirlpudl_close(void *cc, void *dst);
+void sph_whirl384_close(void *cc, void *dst);
 
 #endif
 

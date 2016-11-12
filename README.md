@@ -6,6 +6,7 @@
     - Whirlpond(n) = Whirlpool(n) ^ Whirlpool(256+n) (bracket = bit position)
     - Whirlpudl(n) = Whirlpool(n) ^ Whirlpool(128+n) (bracket = bit position)
 - sha3nist.c and sha3nist.h is just a bonus script for reference.
+- To use the libaray, just type `python setup.py install`
 
 # Formatting rules
 - There are no empty lines at the end of files.
@@ -28,7 +29,6 @@ extern "C"{
 }
 #endif
 ```
-
 
 ```
  ___ ___ _ _ ___ ___ ___ 

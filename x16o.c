@@ -37,7 +37,7 @@ void x16o512_hash(const char* input, uint32_t x, char* output)
     sph_hamsi512_context    ctx_hamsi1;
     sph_fugue512_context    ctx_fugue1;
     sph_shabal512_context   ctx_shabal1;
-    sph_whirlpool_context   ctx_whirlpool1;
+    sph_whirl512_context   ctx_whirlpool1;
     sph_sha512_context      ctx_sha2;
 
     //these uint512 in the c++ source of the client are backed by an array of uint32
@@ -99,9 +99,9 @@ void x16o512_hash(const char* input, uint32_t x, char* output)
     sph_shabal512 (&ctx_shabal1, hashA, 64);
     sph_shabal512_close(&ctx_shabal1, hashB);
 
-    sph_whirlpool_init (&ctx_whirlpool1);
-    sph_whirlpool (&ctx_whirlpool1, hashB, 64);
-    sph_whirlpool_close(&ctx_whirlpool1, hashA);
+    sph_whirl512_init (&ctx_whirlpool1);
+    sph_whirl512 (&ctx_whirlpool1, hashB, 64);
+    sph_whirl512_close(&ctx_whirlpool1, hashA);
 
     sph_sha512_init (&ctx_sha2);
     sph_sha512 (&ctx_sha2, hashA, 64);
@@ -127,7 +127,7 @@ void x16o256_hash(const char* input, uint32_t x, char* output)
     sph_hamsi256_context    ctx_hamsi1;
     sph_fugue256_context    ctx_fugue1;
     sph_shabal256_context   ctx_shabal1;
-    sph_whirlpond_context   ctx_whirlpond1;
+    sph_whirl256_context   ctx_whirlpond1;
     sph_sha256_context      ctx_sha2;
 
     //these uint512 in the c++ source of the client are backed by an array of uint32
@@ -189,9 +189,9 @@ void x16o256_hash(const char* input, uint32_t x, char* output)
     sph_shabal256 (&ctx_shabal1, hashA, 32);
     sph_shabal256_close(&ctx_shabal1, hashB);
 
-    sph_whirlpond_init (&ctx_whirlpond1);
-    sph_whirlpond (&ctx_whirlpond1, hashB, 32);
-    sph_whirlpond_close(&ctx_whirlpond1, hashA);
+    sph_whirl256_init (&ctx_whirlpond1);
+    sph_whirl256 (&ctx_whirlpond1, hashB, 32);
+    sph_whirl256_close(&ctx_whirlpond1, hashA);
 
     sph_sha256_init (&ctx_sha2);
     sph_sha256 (&ctx_sha2, hashA, 32);
@@ -217,7 +217,7 @@ void x16o384_hash(const char* input, uint32_t x, char* output)
     sph_hamsi384_context    ctx_hamsi1;
     sph_fugue384_context    ctx_fugue1;
     sph_shabal384_context   ctx_shabal1;
-    sph_whirlpudl_context   ctx_whirlpudl1;
+    sph_whirl384_context   ctx_whirlpudl1;
     sph_sha384_context      ctx_sha2;
 
     //these uint512 in the c++ source of the client are backed by an array of uint32
@@ -279,9 +279,9 @@ void x16o384_hash(const char* input, uint32_t x, char* output)
     sph_shabal384 (&ctx_shabal1, hashA, 48);
     sph_shabal384_close(&ctx_shabal1, hashB);
 
-    sph_whirlpudl_init (&ctx_whirlpudl1);
-    sph_whirlpudl (&ctx_whirlpudl1, hashB, 48);
-    sph_whirlpudl_close(&ctx_whirlpudl1, hashA);
+    sph_whirl384_init (&ctx_whirlpudl1);
+    sph_whirl384 (&ctx_whirlpudl1, hashB, 48);
+    sph_whirl384_close(&ctx_whirlpudl1, hashA);
 
     sph_sha384_init (&ctx_sha2);
     sph_sha384 (&ctx_sha2, hashA, 48);

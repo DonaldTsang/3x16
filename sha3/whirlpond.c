@@ -1245,10 +1245,9 @@ table_skew(sph_u64 val, int num)
 	} while (0)
 
 /* see sph_whirlpool.h */
-void
-sph_whirlpool_init(void *cc)
+void sph_whirl512_init(void *cc)
 {
-	sph_whirlpool_context *sc;
+	sph_whirl512_context *sc;
 
 	sc = cc;
 	/*
@@ -1264,7 +1263,7 @@ sph_whirlpool_init(void *cc)
 #endif
 }
 
-static void whirlpool_round(const void *src, sph_u64 *state)
+static void whirl512_round(const void *src, sph_u64 *state)
 {
 	LVARS
 	int r;
@@ -1294,24 +1293,23 @@ static void whirlpool_round(const void *src, sph_u64 *state)
 #define BLEN   64U
 #define PLW4   1
 
-#define RFUN   whirlpool_round
-#define HASH   whirlpool
+#define RFUN   whirl512_round
+#define HASH   whirl512
 #include "md_helper.c"
 #undef RFUN
 #undef HASH
 
-void sph_whirlpool_close(void *cc, void *dst)
+void sph_whirl512_close(void *cc, void *dst)
 {
-	sph_whirlpool_context *sc;
+	sph_whirl512_context *sc;
 	int i;
  
-	whirlpool_close(cc, dst, 0);
+	whirl512_close(cc, dst, 0);
 	sc = cc;
 	for (i = 0; i < 8; i ++)
 		sph_enc64le((unsigned char *)dst + 8 * i, sc->state[i]);
-	sph_whirlpool_init(cc);
+	sph_whirl512_init(cc);
 }
-
 
 void fermat(uint16_t const a, uint16_t const b, uint16_t x)
 {
@@ -1326,23 +1324,23 @@ void fermat(uint16_t const a, uint16_t const b, uint16_t x)
 		c = (uint32_t)a * (uint32_t)b;
 		hi = c >> 16;
 		lo = c;
-		x = lo - hi + (lo > hi ? 0 : 1)
+		x = lo - hi + (lo > hi ? 0 : 1);
 }
 
-void sph_whirlpond_init(void *cc)
+void sph_whirl256_init(void *cc)
 {
-	sph_whirlpool_init(cc);
+	sph_whirl512_init(cc);
 }
 
-void sph_whirlpond(void *cc, const void *data, size_t len)
+void sph_whirl256(void *cc, const void *data, size_t len)
 {
-	sph_whirlpool(cc, data, len);
+	sph_whirl512(cc, data, len);
 }
 
-void sph_whirlpond_close(void *cc, void *dst)
+void sph_whirl256_close(void *cc, void *dst)
 {
 	uint16_t var0[32], var1[16];
-	sph_whirlpool_close(cc, var0);
+	sph_whirl512_close(cc, var0);
 	uint8_t i;
 	for (i = 0; i < 16; i += 1){
 		var1[i] = var0[i] ^ var0[16+i];
@@ -1350,20 +1348,20 @@ void sph_whirlpond_close(void *cc, void *dst)
 	memcpy(dst, var1, 32); // i am pretty sure this will cause problems
 }
 
-void sph_whirlpudl_init(void *cc)
+void sph_whirl384_init(void *cc)
 {
-	sph_whirlpool_init(cc);
+	sph_whirl512_init(cc);
 }
 
-void sph_whirlpudl(void *cc, const void *data, size_t len)
+void sph_whirl384(void *cc, const void *data, size_t len)
 {
-	sph_whirlpool(cc, data, len);
+	sph_whirl512(cc, data, len);
 }
 
-void sph_whirlpudl_close(void *cc, void *dst)
+void sph_whirl384_close(void *cc, void *dst)
 {
 	uint16_t var0[32], var1[24];
-	sph_whirlpool_close(cc, var0);
+	sph_whirl512_close(cc, var0);
 	uint8_t i;
 	for (i = 0; i < 24; i += 1){
 		var1[i] = var0[i] ^ var0[8+i];
