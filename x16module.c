@@ -4,6 +4,7 @@
 #include "x16r.h"
 #include "x16c.h"
 #include "simple.h"
+#include "val.h"
 
 static PyObject *hash_func(void (*func)(const char*, uint32_t, char*), PyObject *self, PyObject *args, const unsigned int buf_size)
 {
@@ -104,6 +105,16 @@ static PyObject *gethash512_ ## name(PyObject *self, PyObject *args) \
     return hash_func(hash_512 ## name, self, args, 64); \
 }
 
+#define HASHERS(name) \
+static PyObject *gethash320_ ## name(PyObject *self, PyObject *args) \
+{ \
+    return hash_func(hash_320 ## name, self, args, 40); \
+} \
+static PyObject *gethash448_ ## name(PyObject *self, PyObject *args) \
+{ \
+    return hash_func(hash_448 ## name, self, args, 56); \
+}
+
 HASHER(blake)
 HASHER(bmw)
 HASHER(groestl)
@@ -121,10 +132,31 @@ HASHER(shabal)
 HASHER(whirl)
 HASHER(sha)
 
+HASHERS(blake)
+HASHERS(bmw)
+HASHERS(groestl)
+HASHERS(jh)
+HASHERS(keccak)
+HASHERS(skein)
+HASHERS(luffa)
+HASHERS(cubehash)
+HASHERS(shavite)
+HASHERS(simd)
+HASHERS(echo)
+HASHERS(hamsi)
+HASHERS(fugue)
+HASHERS(shabal)
+HASHERS(whirl)
+HASHERS(sha)
+
 #define HASH_ARRAY(name) \
 {"getHash_256" #name, gethash256_ ## name, METH_VARARGS, "Returns the 256 bit hash of" #name}, \
 {"getHash_384" #name, gethash384_ ## name, METH_VARARGS, "Returns the 384 bit hash of" #name}, \
 {"getHash_512" #name, gethash512_ ## name, METH_VARARGS, "Returns the 512 bit hash of" #name}, 
+
+#define HASHS_ARRAY(name) \
+{"getHash_320" #name, gethash320_ ## name, METH_VARARGS, "Returns the 320 bit hash of" #name}, \
+{"getHash_448" #name, gethash448_ ## name, METH_VARARGS, "Returns the 448 bit hash of" #name}
 
 static PyMethodDef X16Methods[] = {
     { "getHash_512o", x16o512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
@@ -136,7 +168,7 @@ static PyMethodDef X16Methods[] = {
     { "getHash_384o", x16o384_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
     { "getHash_384r", x16r384_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
     { "getHash_384c", x16c384_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
-    HASH_ARRAY(blake)
+	HASH_ARRAY(blake)
 	HASH_ARRAY(bmw)
 	HASH_ARRAY(groestl)
 	HASH_ARRAY(jh)
@@ -152,6 +184,22 @@ static PyMethodDef X16Methods[] = {
 	HASH_ARRAY(shabal)
     HASH_ARRAY(whirl)
 	HASH_ARRAY(sha)
+	HASH_ARRAYS(blake)
+	HASH_ARRAYS(bmw)
+	HASH_ARRAYS(groestl)
+	HASH_ARRAYS(jh)
+	HASH_ARRAYS(keccak)
+	HASH_ARRAYS(skein)
+	HASH_ARRAYS(luffa)
+	HASH_ARRAYS(cubehash)
+	HASH_ARRAYS(shavite)
+	HASH_ARRAYS(simd)
+	HASH_ARRAYS(echo)
+	HASH_ARRAYS(hamsi)
+	HASH_ARRAYS(fugue)
+	HASH_ARRAYS(shabal)
+    HASH_ARRAYS(whirl)
+	HASH_ARRAYS(sha)
     { NULL, NULL, 0, NULL }
 };
 

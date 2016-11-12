@@ -1,3 +1,4 @@
+#include "val.h"
 #include "sha3/sph_blake.h"
 #include "sha3/sph_bmw.h"
 #include "sha3/sph_groestl.h"
@@ -33,6 +34,10 @@ SIMPLE(name, 256) \
 SIMPLE(name, 384) \
 SIMPLE(name, 512)
 
+#define SIMPLEZ_LOOP(name) \
+SIMPLE(name, 320) \
+SIMPLE(name, 448)
+
 SIMPLE_LOOP(blake)
 SIMPLE_LOOP(bmw)
 SIMPLE_LOOP(groestl)
@@ -49,6 +54,23 @@ SIMPLE_LOOP(fugue)
 SIMPLE_LOOP(shabal)
 SIMPLE_LOOP(whirl)
 SIMPLE_LOOP(sha)
+
+SIMPLEZ_LOOP(blake)
+SIMPLEZ_LOOP(bmw)
+SIMPLEZ_LOOP(groestl)
+SIMPLEZ_LOOP(jh)
+SIMPLEZ_LOOP(keccak)
+SIMPLEZ_LOOP(skein)
+SIMPLEZ_LOOP(luffa)
+SIMPLEZ_LOOP(cubehash)
+SIMPLEZ_LOOP(shavite)
+SIMPLEZ_LOOP(simd)
+SIMPLEZ_LOOP(echo)
+SIMPLEZ_LOOP(hamsi)
+SIMPLEZ_LOOP(fugue)
+SIMPLEZ_LOOP(shabal)
+SIMPLEZ_LOOP(whirl)
+SIMPLEZ_LOOP(sha)
 
 #ifdef __cplusplus
 }
