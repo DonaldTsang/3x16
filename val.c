@@ -1,7 +1,6 @@
-#include <stdlib.h>
+#include "val.h"
 #include <stdint.h>
 #include <string.h>
-#include <stdio.h>
 
 #include "sha3/sph_blake.h"
 #include "sha3/sph_bmw.h"

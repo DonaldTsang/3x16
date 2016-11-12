@@ -1315,16 +1315,17 @@ void fermat(uint16_t const a, uint16_t const b, uint16_t x)
 {
 	uint32_t c;
 	uint16_t hi, lo;
-	if (a * b == 0)
-		if (a == 0)
+	if (a * b == 0) {
+		if (a == 0) {
 			x = -b + 1;
-		else
+		} else {
 			x = -a + 1;
-	else
+		}
+	} else {
 		c = (uint32_t)a * (uint32_t)b;
 		hi = c >> 16;
 		lo = c;
-		x = lo - hi + (lo > hi ? 0 : 1);
+		x = lo - hi + (lo > hi ? 0 : 1);}
 }
 
 void sph_whirl256_init(void *cc)

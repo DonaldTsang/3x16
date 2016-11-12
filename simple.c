@@ -1,3 +1,5 @@
+#include "simple.h"
+
 #include "val.h"
 #include "sha3/sph_blake.h"
 #include "sha3/sph_bmw.h"
