@@ -184,7 +184,7 @@ void x16r256_hash(const char* input, uint32_t x, char* output)
     sph_hamsi256_context    ctx_hamsi1;
     sph_fugue256_context    ctx_fugue1;
     sph_shabal256_context   ctx_shabal1;
-    sph_whirl256_context   ctx_whirlpond1;
+    sph_whirl256_context   ctx_whirl1;
     sph_sha256_context      ctx_sha2;
 
     //these uint512 in the c++ source of the client are backed by an array of uint32
@@ -275,9 +275,9 @@ void x16r256_hash(const char* input, uint32_t x, char* output)
 
     xor256_hash(hashA, hashB);
 
-    sph_whirl256_init (&ctx_whirlpond1);
-    sph_whirl256 (&ctx_whirlpond1, input, x);
-    sph_whirl256_close(&ctx_whirlpond1, hashA);
+    sph_whirl256_init (&ctx_whirl1);
+    sph_whirl256 (&ctx_whirl1, input, x);
+    sph_whirl256_close(&ctx_whirl1, hashA);
 
     xor256_hash(hashA, hashB);
 
