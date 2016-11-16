@@ -1313,19 +1313,11 @@ void sph_whirl512_close(void *cc, void *dst)
 
 void fermat(uint16_t const a, uint16_t const b, uint16_t x)
 {
-	uint32_t c;
-	uint16_t hi, lo;
-	if (a * b == 0) {
-		if (a == 0) {
-			x = -b + 1;
-		} else {
-			x = -a + 1;
-		}
+	uint32_t product = (uint32_t)a * (uint32_t)b;
+	if (product == 0) { x = 0 - a - b + 1;
 	} else {
-		c = (uint32_t)a * (uint32_t)b;
-		hi = c >> 16;
-		lo = c;
-		x = lo - hi + (lo > hi ? 0 : 1);}
+		result = (product & 0xFFFF) - (product >> 16);
+		result -= result >> 16; x = result & 0xFFFF}
 }
 
 void sph_whirl256_init(void *cc)
