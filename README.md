@@ -24,10 +24,10 @@
 - val.c and val.h is used to generate 320, 448, 128, 160 and 192 bits.
 - The sha3 folder contains all 16 different hash algorithms.
     - sph_types.h is required by all hash files.
-    - aes_helper.c is required by both shavite.c and echo.c
-    - md_helper.c is required by sha2big.c, sha2.c and whirlpond.c
     - each hash .h file is required by it's corrosponding .c file
-
+    - md_helper.c is required by sha2big.c, sha2.c and whirlpond.c
+    - aes_helper.c is required by both shavite.c and echo.c
+    - hamsi_helper.c is required by hamsi.c
 
 # Headers for .c and .h files:
 ```
