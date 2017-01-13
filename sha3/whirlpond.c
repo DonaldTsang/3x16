@@ -1317,7 +1317,8 @@ void fermat(uint16_t const a, uint16_t const b, uint16_t x)
 	if (product == 0) { x = 0 - a - b + 1;
 	} else {
 		result = (product & 0xFFFF) - (product >> 16);
-		result -= result >> 16; x = result & 0xFFFF}
+		result -= result >> 16; x = result & 0xFFFF;
+	}
 }
 
 void sph_whirl256_init(void *cc)
