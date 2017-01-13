@@ -36,6 +36,24 @@ void sph_ ## name ## 448_init(void *cc); \
 void sph_ ## name ## 448(void *cc, const void *data, size_t len); \
 void sph_ ## name ## 448_close(void *cc, void *dst);
 
+#define HASHS128(name) \
+typedef sph_ ## name ## 256_context sph_ ## name ## 128_context; \
+void sph_ ## name ## 128_init(void *cc); \
+void sph_ ## name ## 128(void *cc, const void *data, size_t len); \
+void sph_ ## name ## 128_close(void *cc, void *dst);
+
+#define HASHS160(name) \
+typedef sph_ ## name ## 320_context sph_ ## name ## 160_context; \
+void sph_ ## name ## 160_init(void *cc); \
+void sph_ ## name ## 160(void *cc, const void *data, size_t len); \
+void sph_ ## name ## 160_close(void *cc, void *dst);
+
+#define HASHS192(name) \
+typedef sph_ ## name ## 384_context sph_ ## name ## 192_context; \
+void sph_ ## name ## 192_init(void *cc); \
+void sph_ ## name ## 192(void *cc, const void *data, size_t len); \
+void sph_ ## name ## 192_close(void *cc, void *dst);
+
 HASHS320(blake)
 HASHS320(bmw)
 HASHS320(groestl)
@@ -69,6 +87,57 @@ HASHS448(fugue)
 HASHS448(shabal)
 HASHS448(whirl)
 HASHS448(sha)
+
+HASHS128(blake)
+HASHS128(bmw)
+HASHS128(groestl)
+HASHS128(jh)
+HASHS128(keccak)
+HASHS128(skein)
+HASHS128(luffa)
+HASHS128(cubehash)
+HASHS128(shavite)
+HASHS128(simd)
+HASHS128(echo)
+HASHS128(hamsi)
+HASHS128(fugue)
+HASHS128(shabal)
+HASHS128(whirl)
+HASHS128(sha)
+
+HASHS160(blake)
+HASHS160(bmw)
+HASHS160(groestl)
+HASHS160(jh)
+HASHS160(keccak)
+HASHS160(skein)
+HASHS160(luffa)
+HASHS160(cubehash)
+HASHS160(shavite)
+HASHS160(simd)
+HASHS160(echo)
+HASHS160(hamsi)
+HASHS160(fugue)
+HASHS160(shabal)
+HASHS160(whirl)
+HASHS160(sha)
+
+HASHS192(blake)
+HASHS192(bmw)
+HASHS192(groestl)
+HASHS192(jh)
+HASHS192(keccak)
+HASHS192(skein)
+HASHS192(luffa)
+HASHS192(cubehash)
+HASHS192(shavite)
+HASHS192(simd)
+HASHS192(echo)
+HASHS192(hamsi)
+HASHS192(fugue)
+HASHS192(shabal)
+HASHS192(whirl)
+HASHS192(sha)
 
 #ifdef __cplusplus
 }

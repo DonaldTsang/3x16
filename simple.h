@@ -19,6 +19,12 @@ SIMPLER(name, 512)
 SIMPLER(name, 320) \
 SIMPLER(name, 448)
 
+#define SIMPLRY_LOOP(name) \
+SIMPLE(name, 128) \
+SIMPLE(name, 160) \
+SIMPLE(name, 192) \
+SIMPLE(name, 224)
+
 SIMPLER_LOOP(blake)
 SIMPLER_LOOP(bmw)
 SIMPLER_LOOP(groestl)
@@ -52,6 +58,23 @@ SIMPLERZ_LOOP(fugue)
 SIMPLERZ_LOOP(shabal)
 SIMPLERZ_LOOP(whirl)
 SIMPLERZ_LOOP(sha)
+
+SIMPLRY_LOOP(blake)
+SIMPLRY_LOOP(bmw)
+SIMPLRY_LOOP(groestl)
+SIMPLRY_LOOP(jh)
+SIMPLRY_LOOP(keccak)
+SIMPLRY_LOOP(skein)
+SIMPLRY_LOOP(luffa)
+SIMPLRY_LOOP(cubehash)
+SIMPLRY_LOOP(shavite)
+SIMPLRY_LOOP(simd)
+SIMPLRY_LOOP(echo)
+SIMPLRY_LOOP(hamsi)
+SIMPLRY_LOOP(fugue)
+SIMPLRY_LOOP(shabal)
+SIMPLRY_LOOP(whirl)
+SIMPLRY_LOOP(sha)
 
 #ifdef __cplusplus
 }
