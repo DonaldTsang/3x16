@@ -115,6 +115,24 @@ static PyObject *gethash448_ ## name(PyObject *self, PyObject *args) \
     return hash_func(hash_448 ## name, self, args, 56); \
 }
 
+#define HASHERZ(name) \
+static PyObject *gethash128_ ## name(PyObject *self, PyObject *args) \
+{ \
+    return hash_func(hash_128 ## name, self, args, 16); \
+} \
+static PyObject *gethash160_ ## name(PyObject *self, PyObject *args) \
+{ \
+    return hash_func(hash_160 ## name, self, args, 20); \
+} \
+static PyObject *gethash192_ ## name(PyObject *self, PyObject *args) \
+{ \
+    return hash_func(hash_192 ## name, self, args, 24); \
+}
+static PyObject *gethash224_ ## name(PyObject *self, PyObject *args) \
+{ \
+    return hash_func(hash_224 ## name, self, args, 28); \
+}
+
 HASHER(blake)
 HASHER(bmw)
 HASHER(groestl)
@@ -149,6 +167,23 @@ HASHERS(shabal)
 HASHERS(whirl)
 HASHERS(sha)
 
+HASHERZ(blake)
+HASHERZ(bmw)
+HASHERZ(groestl)
+HASHERZ(jh)
+HASHERZ(keccak)
+HASHERZ(skein)
+HASHERZ(luffa)
+HASHERZ(cubehash)
+HASHERZ(shavite)
+HASHERZ(simd)
+HASHERZ(echo)
+HASHERZ(hamsi)
+HASHERZ(fugue)
+HASHERZ(shabal)
+HASHERZ(whirl)
+HASHERZ(sha)
+
 #define HASH_ARRAY(name) \
 {"getHash_256" #name, gethash256_ ## name, METH_VARARGS, "Returns the 256 bit hash of" #name}, \
 {"getHash_384" #name, gethash384_ ## name, METH_VARARGS, "Returns the 384 bit hash of" #name}, \
@@ -157,6 +192,12 @@ HASHERS(sha)
 #define HASHS_ARRAY(name) \
 {"getHash_320" #name, gethash320_ ## name, METH_VARARGS, "Returns the 320 bit hash of" #name}, \
 {"getHash_448" #name, gethash448_ ## name, METH_VARARGS, "Returns the 448 bit hash of" #name},
+
+#define HASHZ_ARRAY(name) \
+{"getHash_128" #name, gethash128_ ## name, METH_VARARGS, "Returns the 128 bit hash of" #name}, \
+{"getHash_160" #name, gethash160_ ## name, METH_VARARGS, "Returns the 160 bit hash of" #name}, \
+{"getHash_192" #name, gethash192_ ## name, METH_VARARGS, "Returns the 192 bit hash of" #name}, \
+{"getHash_224" #name, gethash224_ ## name, METH_VARARGS, "Returns the 224 bit hash of" #name}, \
 
 static PyMethodDef X16Methods[] = {
     { "getHash_512o", x16o512_gethash, METH_VARARGS, "Returns the proof of work hash using X16 hash" },
@@ -200,6 +241,22 @@ static PyMethodDef X16Methods[] = {
 	HASHS_ARRAY(shabal)
     HASHS_ARRAY(whirl)
 	HASHS_ARRAY(sha)
+    HASHZ_ARRAY(blake)
+    HASHZ_ARRAY(bmw)
+    HASHZ_ARRAY(groestl)
+    HASHZ_ARRAY(jh)
+    HASHZ_ARRAY(keccak)
+    HASHZ_ARRAY(skein)
+    HASHZ_ARRAY(luffa)
+    HASHZ_ARRAY(cubehash)
+    HASHZ_ARRAY(shavite)
+    HASHZ_ARRAY(simd)
+    HASHZ_ARRAY(echo)
+    HASHZ_ARRAY(hamsi)
+    HASHZ_ARRAY(fugue)
+    HASHZ_ARRAY(shabal)
+    HASHZ_ARRAY(whirl)
+    HASHZ_ARRAY(sha)
     { NULL, NULL, 0, NULL }
 };
 
