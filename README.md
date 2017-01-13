@@ -28,6 +28,10 @@
     - md_helper.c is required by sha2big.c, sha2.c and whirlpond.c
     - aes_helper.c is required by both shavite.c and echo.c
     - hamsi_helper.c is required by hamsi.c
+- The test folder contains tests for all 16 algorithms.
+    each test requires these files to work:
+        - the sph_types.h file and utest.h
+        - the corrosponding .c and .h file
 
 # Headers for .c and .h files:
 ```
