@@ -26,101 +26,101 @@ extern "C"{
 #define HASH320(name) \
 void sph_ ## name ## 320_init(void *cc) \
 { \
-	sph_ ## name ## 384_init(cc); \
+    sph_ ## name ## 384_init(cc); \
 } \
 void sph_ ## name ## 320(void *cc, const void *data, size_t len) \
 { \
-	sph_ ## name ## 384(cc, data, len); \
+    sph_ ## name ## 384(cc, data, len); \
 } \
 void sph_ ## name ## 320_close(void *cc, void *dst) \
 { \
-	uint16_t var0[24], var1[20]; \
-	sph_ ## name ## 384_close(cc, var0); \
-	uint8_t i; \
-	for (i = 0; i < 20; i += 1){ \
-		var1[i] = var0[i] ^ var0[4+i]; \
-	} \
-	memcpy(dst, var1, 40); \
+    uint16_t var0[24], var1[20]; \
+    sph_ ## name ## 384_close(cc, var0); \
+    uint8_t i; \
+    for (i = 0; i < 20; i += 1){ \
+        var1[i] = var0[i] ^ var0[4+i]; \
+    } \
+    memcpy(dst, var1, 40); \
 }
 
 #define HASH448(name) \
 void sph_ ## name ## 448_init(void *cc) \
 { \
-	sph_ ## name ## 512_init(cc); \
+    sph_ ## name ## 512_init(cc); \
 } \
 void sph_ ## name ## 448(void *cc, const void *data, size_t len) \
 { \
-	sph_ ## name ## 512(cc, data, len); \
+    sph_ ## name ## 512(cc, data, len); \
 } \
 void sph_ ## name ## 448_close(void *cc, void *dst) \
 { \
-	uint16_t var0[32], var1[28]; \
-	sph_ ## name ## 512_close(cc, var0); \
-	uint8_t i; \
-	for (i = 0; i < 28; i += 1){ \
-		var1[i] = var0[i] ^ var0[4+i]; \
-	} \
-	memcpy(dst, var1, 56); \
+    uint16_t var0[32], var1[28]; \
+    sph_ ## name ## 512_close(cc, var0); \
+    uint8_t i; \
+    for (i = 0; i < 28; i += 1){ \
+        var1[i] = var0[i] ^ var0[4+i]; \
+    } \
+    memcpy(dst, var1, 56); \
 }
 
 #define HASH128(name) \
 void sph_ ## name ## 128_init(void *cc) \
 { \
-	sph_ ## name ## 256_init(cc); \
+    sph_ ## name ## 256_init(cc); \
 } \
 void sph_ ## name ## 128(void *cc, const void *data, size_t len) \
 { \
-	sph_ ## name ## 256(cc, data, len); \
+    sph_ ## name ## 256(cc, data, len); \
 } \
 void sph_ ## name ## 128_close(void *cc, void *dst) \
 { \
-	uint16_t var0[16], var1[8]; \
-	sph_ ## name ## 256_close(cc, var0); \
-	uint8_t i; \
-	for (i = 0; i < 8; i += 1){ \
-		var1[i] = var0[i] ^ var0[8+i]; \
-	} \
-	memcpy(dst, var1, 16); \
+    uint16_t var0[16], var1[8]; \
+    sph_ ## name ## 256_close(cc, var0); \
+    uint8_t i; \
+    for (i = 0; i < 8; i += 1){ \
+        var1[i] = var0[i] ^ var0[8+i]; \
+    } \
+    memcpy(dst, var1, 16); \
 }
 
 #define HASH160(name) \
 void sph_ ## name ## 160_init(void *cc) \
 { \
-	sph_ ## name ## 320_init(cc); \
+    sph_ ## name ## 320_init(cc); \
 } \
 void sph_ ## name ## 160(void *cc, const void *data, size_t len) \
 { \
-	sph_ ## name ## 320(cc, data, len); \
+    sph_ ## name ## 320(cc, data, len); \
 } \
 void sph_ ## name ## 160_close(void *cc, void *dst) \
 { \
-	uint16_t var0[20], var1[10]; \
-	sph_ ## name ## 320_close(cc, var0); \
-	uint8_t i; \
-	for (i = 0; i < 10; i += 1){ \
-		var1[i] = var0[i] ^ var0[10+i]; \
-	} \
-	memcpy(dst, var1, 20); \
+    uint16_t var0[20], var1[10]; \
+    sph_ ## name ## 320_close(cc, var0); \
+    uint8_t i; \
+    for (i = 0; i < 10; i += 1){ \
+        var1[i] = var0[i] ^ var0[10+i]; \
+    } \
+    memcpy(dst, var1, 20); \
 }
 
 #define HASH192(name) \
 void sph_ ## name ## 192_init(void *cc) \
 { \
-	sph_ ## name ## 384_init(cc); \
+    sph_ ## name ## 384_init(cc); \
 } \
 void sph_ ## name ## 192(void *cc, const void *data, size_t len) \
 { \
-	sph_ ## name ## 384(cc, data, len); \
+    sph_ ## name ## 384(cc, data, len); \
 } \
 void sph_ ## name ## 192_close(void *cc, void *dst) \
 { \
-	uint16_t var0[24], var1[12]; \
-	sph_ ## name ## 384_close(cc, var0); \
-	uint8_t i; \
-	for (i = 0; i < 12; i += 1){ \
-		var1[i] = var0[i] ^ var0[12+i]; \
-	} \
-	memcpy(dst, var1, 24); \
+    uint16_t var0[24], var1[12]; \
+    sph_ ## name ## 384_close(cc, var0); \
+    uint8_t i; \
+    for (i = 0; i < 12; i += 1){ \
+        var1[i] = var0[i] ^ var0[12+i]; \
+    } \
+    memcpy(dst, var1, 24); \
 }
 
 HASH320(blake)
